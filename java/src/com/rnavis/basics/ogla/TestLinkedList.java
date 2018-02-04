@@ -4,19 +4,20 @@ public class TestLinkedList {
 
     public static void main(String args[]) {
         LinkedList<String> list = new LinkedList();
-        list.add("test");
-        list.add("ncn");
-        list.add("cnp");
-        list.add("pc");
-        list.add("cn");
-        list.add("jest");
+        list.add("T=E=S=T");
+        list.add("N=CN");
+        list.add("CN=P");
+        list.add("P=C");
+        list.add("C=N");
+        list.add("J=E=S=T");
         System.out.println(list.toString());
         System.out.println(list.getSize());
         System.out.println(list.get(2).data);
-        //System.out.println("removal status "+list.remove("test"));
-        //System.out.println(list.toString());
+        System.out.println("removal status "+list.remove("T=E=S=T"));
+        System.out.println("removal status "+ list.remove("J=E=S=T"));
+        System.out.println(list.toString());
         System.out.println(list.getSize());
-        //System.out.println(list.get(2).data);
+        System.out.println(list.get(2).data);
         list.reverse();
         System.out.println(list.toString());
     }
