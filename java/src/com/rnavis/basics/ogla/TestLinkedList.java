@@ -13,13 +13,14 @@ public class TestLinkedList {
         System.out.println(list.toString());
         System.out.println(list.getSize());
         System.out.println(list.get(2).data);
-        System.out.println("removal status "+list.remove("T=E=S=T"));
-        System.out.println("removal status "+ list.remove("J=E=S=T"));
+        System.out.println("removal status " + list.remove("T=E=S=T"));
+        System.out.println("removal status " + list.remove("J=E=S=T"));
         System.out.println(list.toString());
         System.out.println(list.getSize());
         System.out.println(list.get(2).data);
         list.reverse();
         System.out.println(list.toString());
+
     }
 }
 
@@ -36,7 +37,7 @@ class LinkedList<T> {
             return;
         }
         Node current = head;
-        while(current.next != null) {
+        while (current.next != null) {
             current = current.next;
         }
         current.setNext(new Node(data));
@@ -47,14 +48,15 @@ class LinkedList<T> {
         Node current = head;
         Node next = null;
         Node previous = null;
-        while(current != null) {
+        while (current != null) {
             next = current.next;
             current.next = previous;
             previous = current;
             current = next;
         }
-        head= previous;
+        head = previous;
     }
+
     public boolean remove(T data) {
         if (head == null) {
             return false;
@@ -65,7 +67,7 @@ class LinkedList<T> {
             size--;
             return true;
         }
-        while(current.next != null) {
+        while (current.next != null) {
             if (data.equals(current.next.data)) {
                 if (current.next.next != null) {
                     current.next.data = current.next.next.data;
@@ -87,7 +89,7 @@ class LinkedList<T> {
         if (index == 0) {
             return head;
         }
-        while(current.getNext() != null) {
+        while (current.getNext() != null) {
             current = current.getNext();
             currentindex++;
             if (currentindex == index) {
@@ -96,6 +98,7 @@ class LinkedList<T> {
         }
         return null;
     }
+
     public int getSize() {
         return size;
     }
@@ -103,11 +106,11 @@ class LinkedList<T> {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        if (head.next== null) {
+        if (head.next == null) {
             builder.append(head.data);
         } else {
             Node current = head;
-            while(current.next != null) {
+            while (current.next != null) {
                 builder.append(current.data).append(" ->");
                 current = current.next;
             }
@@ -121,6 +124,7 @@ class LinkedList<T> {
 class Node<T> {
     T data;
     Node next;
+
     Node(T data) {
         this.data = data;
     }
@@ -133,3 +137,4 @@ class Node<T> {
         this.next = next;
     }
 }
+
