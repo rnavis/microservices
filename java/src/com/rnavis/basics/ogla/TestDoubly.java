@@ -1,8 +1,5 @@
 package com.rnavis.basics.ogla;
 
-/**
- * Created by sivanr on 2/5/2018.
- */
 public class TestDoubly {
     public static void main(String args[]) {
         Doubly list = new Doubly();
