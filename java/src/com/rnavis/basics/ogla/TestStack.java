@@ -17,6 +17,24 @@ public class TestStack {
         arrayBackedStack.pop();
         System.out.println(arrayBackedStack.isEmpty());
 
+        LinkedListBackedStack<Integer> linkedListBackedStack = new LinkedListBackedStack<>();
+        linkedListBackedStack.push(1);
+        linkedListBackedStack.push(2);
+        linkedListBackedStack.push(3);
+        System.out.println(linkedListBackedStack.toString());
+        System.out.println("popped=" +linkedListBackedStack.pop());
+        System.out.println(linkedListBackedStack.toString());
+        System.out.println("top >>"+linkedListBackedStack.top());
+        System.out.println("is Empty >>"+ linkedListBackedStack.isEmpty());
+        System.out.println("popped=" +linkedListBackedStack.pop());
+        System.out.println("popped=" +linkedListBackedStack.pop());
+        System.out.println("popped=" +linkedListBackedStack.pop());
+        System.out.println("is Empty >>"+ linkedListBackedStack.isEmpty());
+        linkedListBackedStack.push(100);
+        linkedListBackedStack.push(200);
+        linkedListBackedStack.push(300);
+        System.out.println(linkedListBackedStack.toString());
+
     }
 
 
@@ -59,3 +77,64 @@ class ArrayBackedStack<T> {
 
     }
 }
+
+class LinkedListBackedStack<T> {
+
+    Node head;
+
+    // Always push at first
+    public void push(T data) {
+        Node node = new Node(data);
+        if (head == null) {
+            head = node;
+        } else {
+            node.next = head;
+            head = node;
+        }
+    }
+
+    // Always pop at first
+    public T pop() {
+        if (head == null) {
+            return null;
+        }
+        T data = (T)head.data;
+        Node current = head.next;
+        head = current;
+        return data;
+    }
+
+
+    public boolean isEmpty() {
+        return head == null;
+    }
+
+    public T top() {
+        if(head == null){
+            return null;
+        }
+        return (T)head.data;
+    }
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        if (head == null) {
+            return builder.toString();
+        }
+        Node current = head;
+        builder.append(current.data).append(" -> ");
+        while(current.next != null){
+            builder.append(current.next.data).append(" -> ");
+            current = current.next;
+        }
+        return builder.toString();
+    }
+
+    private class Node<T>{
+        T data;
+        Node next;
+        Node(T data) {
+            this.data = data;
+        }
+    }
+}
+
