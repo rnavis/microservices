@@ -10,7 +10,7 @@ public class TestStack {
         arrayBackedStack.push(4);
         System.out.println(arrayBackedStack);
         arrayBackedStack.pop();
-        System.out.println(arrayBackedStack.top());
+        System.out.println(arrayBackedStack.top().toString());
         System.out.println(arrayBackedStack);
         arrayBackedStack.pop();
         arrayBackedStack.pop();
@@ -22,18 +22,29 @@ public class TestStack {
         linkedListBackedStack.push(2);
         linkedListBackedStack.push(3);
         System.out.println(linkedListBackedStack.toString());
-        System.out.println("popped=" +linkedListBackedStack.pop());
+        linkedListBackedStack.pop();
         System.out.println(linkedListBackedStack.toString());
         System.out.println("top >>"+linkedListBackedStack.top());
         System.out.println("is Empty >>"+ linkedListBackedStack.isEmpty());
-        System.out.println("popped=" +linkedListBackedStack.pop());
-        System.out.println("popped=" +linkedListBackedStack.pop());
-        System.out.println("popped=" +linkedListBackedStack.pop());
+        linkedListBackedStack.pop();
+        linkedListBackedStack.pop();
+        linkedListBackedStack.pop();
         System.out.println("is Empty >>"+ linkedListBackedStack.isEmpty());
         linkedListBackedStack.push(100);
         linkedListBackedStack.push(200);
         linkedListBackedStack.push(300);
+        linkedListBackedStack.push(400);
+        linkedListBackedStack.push(500);
         System.out.println(linkedListBackedStack.toString());
+        linkedListBackedStack.pop();
+        System.out.println(linkedListBackedStack.toString());
+
+        LinkedList list = new LinkedList();
+        list.add(5);
+        list.add(10);
+        list.add(15);
+        list.add(20);
+        list.add(25);
 
     }
 
@@ -94,27 +105,22 @@ class LinkedListBackedStack<T> {
     }
 
     // Always pop at first
-    public T pop() {
+    public void pop() {
         if (head == null) {
-            return null;
+            return;
         }
-        T data = (T)head.data;
         Node current = head.next;
         head = current;
-        return data;
     }
-
 
     public boolean isEmpty() {
         return head == null;
     }
 
-    public T top() {
-        if(head == null){
-            return null;
-        }
-        return (T)head.data;
+    public Node top() {
+        return head;
     }
+
     public String toString() {
         StringBuilder builder = new StringBuilder();
         if (head == null) {
@@ -134,6 +140,9 @@ class LinkedListBackedStack<T> {
         Node next;
         Node(T data) {
             this.data = data;
+        }
+        public String toString() {
+            return data.toString();
         }
     }
 }
