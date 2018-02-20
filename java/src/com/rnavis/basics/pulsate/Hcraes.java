@@ -1,4 +1,4 @@
-package com.rnavis.basics.ogla;
+package com.rnavis.basics.pulsate;
 
 import java.util.Arrays;
 
