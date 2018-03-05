@@ -1,5 +1,8 @@
 package com.rnavis.basics.ogla;
 
+import java.util.*;
+import java.util.LinkedList;
+
 public class TestBinarySearchTree {
 
     public static void main(String args[]) {
@@ -29,6 +32,19 @@ public class TestBinarySearchTree {
         tree.insert(0);
         System.out.println("Minimum = "+ tree.minimum());
         System.out.println("Maximum = "+ tree.maximum());
+        System.out.println("My Height = "+tree.myheight());
+        System.out.println("line of command - Bread First ");
+        tree.breadthFirst();
+        System.out.println("");
+        System.out.println("line of command - Pre-Ordered ");
+        tree.preOrder();
+        System.out.println("");
+        System.out.println("line of command - In-Ordered ");
+        tree.inOrder();
+        System.out.println("");
+        System.out.println("line of command - Post-Ordered ");
+        tree.postOrder();
+        System.out.println("");
     }
 }
 class BinarySearchTree {
@@ -37,6 +53,78 @@ class BinarySearchTree {
     BinarySearchTree() {
         root = null;
     }
+
+    void postOrder() {
+        if (root == null) {
+            System.out.println("empty");
+            return;
+        } else {
+            postOrder(root);
+        }
+    }
+
+    private void postOrder(Node current) {
+        if (current == null) {
+            return;
+        }
+        postOrder(current.left);
+        postOrder(current.right);
+        System.out.print(current.data + " - ");
+    }
+    void inOrder() {
+        if (root == null) {
+            System.out.println("empty..");
+            return;
+        }
+        inOrder(root);
+    }
+    private void inOrder(Node current) {
+        if (current == null)
+            return;
+        inOrder(current.left);
+        System.out.print(current.data + " - ");
+        inOrder(current.right);
+    }
+    void preOrder() {
+        if (root == null) {
+            System.out.println("empty..");
+            return;
+        }
+        preOrder(root);
+    }
+    private void preOrder(Node current) {
+        if (current == null) {
+            return;
+        }
+        System.out.print(current.data + " - ");
+        preOrder(current.left);
+        preOrder(current.right);
+    }
+
+    void breadthFirst() {
+        if (root == null) {
+            System.out.println("empty..");
+            return;
+        }
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        breadthFirst(queue);
+
+    }
+
+    private void breadthFirst(Queue<Node> queue) {
+        if (queue.isEmpty()) {
+            return;
+        }
+        System.out.print(queue.peek().data+" - ");
+        if (queue.peek().left != null)
+            queue.add(queue.peek().left);
+        if (queue.peek().right != null)
+            queue.add(queue.peek().right);
+        queue.remove();
+        breadthFirst(queue);
+    }
+
     void insert(int data) {
         if (root == null) {
             root = new Node(data);
@@ -102,6 +190,19 @@ class BinarySearchTree {
         } else {
             return maximum(current.right);
         }
+    }
+
+    int myheight() {
+        return myHeight(root);
+    }
+
+    private int myHeight(Node root) {
+        if (root == null) {
+            return -1;
+        }
+        int leftHeight = myHeight(root.left);
+        int rightHeight = myHeight(root.right);
+        return Math.max(leftHeight, rightHeight)+1;
     }
 
     private class Node {
