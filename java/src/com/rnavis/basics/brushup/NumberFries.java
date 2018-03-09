@@ -1,6 +1,8 @@
 package com.rnavis.basics.brushup;
 
-public class LcmGcd {
+import java.util.Arrays;
+
+public class NumberFries {
 
     public static void main(String args[]) {
         FindLcm findLcm = new FindLcm();
@@ -18,11 +20,18 @@ public class LcmGcd {
         findLcm.lcmByGCD(458, 995);
         findLcm.lcmByGCD(180, 99);
 
-        TestNode n1 = new TestNode(3,5);
-        TestNode n2 = new TestNode(9,15);
+        FindSumOfFraction.TestNode n1 = new FindSumOfFraction().new TestNode(3,5);
+        FindSumOfFraction.TestNode n2 = new FindSumOfFraction().new TestNode(9,15);
         System.out.println(n1.toString() + "+" + n2.toString() +" = ");
-        TestNode sum = new FindSumOfFraction().sumOfFraction(n1, n2);
+        FindSumOfFraction.TestNode sum = new FindSumOfFraction().sumOfFraction(n1, n2);
         System.out.println(sum.toString());
+
+        MissingNumbersInSequeunce missing = new MissingNumbersInSequeunce();
+        int[] array = {3,0,1, 9,4,2,8,6,5};
+        System.out.println("Missing "+ missing.printMissingNumber(array));
+        System.out.println("Missing efficient "+ missing.printMissingNumberEfficient(array));
+        int[] array2 = {-1, 9,8,6,5,0};
+        missing.printLowestTwoElementsinArray(array2);
     }
 }
 class FindGcd {
@@ -125,8 +134,6 @@ class FindLcm {
     }
 
 }
-
-
 class FindSumOfFraction {
     TestNode sumOfFraction(TestNode n1, TestNode n2) {
         FindGcd gcd = new FindGcd();
@@ -138,17 +145,55 @@ class FindSumOfFraction {
         int calcGcd = gcd.gcd_euclidean(sumNumerator, sumDenominator);
         return new TestNode(sumNumerator/calcGcd, sumDenominator/calcGcd);
     }
+    class TestNode {
+        int numerator;
+        int denominator;
+        TestNode(int numerator, int denominator) {
+            this.numerator= numerator;
+            this.denominator = denominator;
+        }
+        public String toString() {
+            return this.numerator+"/"+this.denominator;
+        }
+    }
 }
-class TestNode {
-    int numerator;
-    int denominator;
-    TestNode(int numerator, int denominator) {
-        this.numerator= numerator;
-        this.denominator = denominator;
+class MissingNumbersInSequeunce {
+    int printMissingNumber(int[] nums) {
+        Arrays.sort(nums);
+        int[] full = new int[nums.length+1];
+        for (int i =0; i<full.length;i++) {
+            if (i != nums[i]) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    int printMissingNumberEfficient(int[] nums) {
+        int biggest =0;
+        for (int num: nums) {
+            if (num>biggest) {
+                biggest = num;
+            }
+        }
+        int sum = biggest * (biggest+1)/2;
+        for (int num:nums) {
+            sum = sum-num;
+        }
+        return sum;
     }
 
-    public String toString() {
-        return this.numerator+"/"+this.denominator;
+    void printLowestTwoElementsinArray(int[] nums) {
+        int lowest=Integer.MAX_VALUE;
+        int low2ndest =Integer.MAX_VALUE-1;
+        for (int num: nums) {
+            if (num<lowest) {
+                low2ndest = lowest;
+                lowest = num;
+            } else if(num<low2ndest) {
+                low2ndest = num;
+            }
+        }
+        System.out.println("lowest elems are: " + lowest + " "+ low2ndest);
     }
 }
 
