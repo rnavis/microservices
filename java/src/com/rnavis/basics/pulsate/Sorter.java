@@ -2,7 +2,7 @@ package com.rnavis.basics.pulsate;
 
 import java.util.Arrays;
 
-public class Retros {
+public class Sorter {
     public static void main(String args[]) {
         BubbleUp bubbleUp = new BubbleUp();
         System.out.println(Arrays.toString(bubbleUp.array));
