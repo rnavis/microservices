@@ -27,8 +27,8 @@ public class NumberFries {
         System.out.println(sum.toString());
 
         MissingNumbersInSequeunce missing = new MissingNumbersInSequeunce();
-        int[] array = {3,0,1, 9,4,2,8,6,5};
-        System.out.println("Missing "+ missing.printMissingNumber(array));
+        int[] array = {3,0,1, 9,4,2,6,5};
+        //System.out.println("Missing "+ missing.printMissingNumber(array));
         System.out.println("Missing efficient "+ missing.printMissingNumberEfficient(array));
         int[] array2 = {-1, 9,8,6,5,0};
         missing.printLowestTwoElementsinArray(array2);

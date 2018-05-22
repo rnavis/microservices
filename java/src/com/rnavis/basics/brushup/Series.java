@@ -16,4 +16,8 @@ public class Series {
             System.out.print(" "+temp);
         }
     }
+
+    static void find() {
+        int[] nums = {4, 9, 12, 15, 16,25};
+    }
 }
