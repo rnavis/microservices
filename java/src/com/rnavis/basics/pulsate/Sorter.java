@@ -15,7 +15,7 @@ public class Sorter {
 /**
  * #1 loop through all elements in the array
  * #2 for every element, loop back again
- * #3 if the element > next element, then switch using a temp
+ * #3 if the element > next element, then switch using a testlearning
  * #4 in place sort
  */
 class BubbleUp {

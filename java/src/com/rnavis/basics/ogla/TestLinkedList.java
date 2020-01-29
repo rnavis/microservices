@@ -2,6 +2,7 @@ package com.rnavis.basics.ogla;
 
 public class TestLinkedList {
 
+
     public static void main(String args[]) {
         LinkedList<String> list = new LinkedList();
         list.add("T=E=S=T");

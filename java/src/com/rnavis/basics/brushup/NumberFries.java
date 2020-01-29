@@ -1,11 +1,11 @@
 package com.rnavis.basics.brushup;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class NumberFries {
 
     public static void main(String args[]) {
-        FindLcm findLcm = new FindLcm();
+        FindLcm findLcm = new FindLcm();/*
         findLcm.brute_lcm(4,5);
         findLcm.brute_lcm(4,0);
         findLcm.brute_lcm(27,9);
@@ -32,6 +32,28 @@ public class NumberFries {
         System.out.println("Missing efficient "+ missing.printMissingNumberEfficient(array));
         int[] array2 = {-1, 9,8,6,5,0};
         missing.printLowestTwoElementsinArray(array2);
+*/
+        //System.out.println(new SumOfDigits().sum(Integer.parseInt("5491")));
+        MissingNumbersInSequeunce missing = new MissingNumbersInSequeunce();
+        int[] entry = {-1,-2,-3,-4,-5};
+        int[] results = missing.twoSum(entry,-8);
+        System.out.println("reslts" +Arrays.toString(results));
+
+    }
+}
+class SumOfDigits {
+    int sum(int a) {
+        int sum = 0;
+        while(a>=10) {
+            sum += a%10;
+            a = a/10;
+        }
+        sum+=a;
+        if (sum>10) {
+            return sum(sum);
+        } else {
+            return sum;
+        }
     }
 }
 class FindGcd {
@@ -182,6 +204,27 @@ class MissingNumbersInSequeunce {
         return sum;
     }
 
+
+    public int[] twoSum(int[] nums, int target) {
+        int[] results = new int[2];
+        boolean found = false;
+        for (int i=0;i<nums.length;i++) {
+            for (int j=i+1; j<nums.length;j++) {
+                if (nums[i]+ nums[j] == target) {
+                    results[0]= i;
+                    results[1]=j;
+                    found = true;
+                    break;
+                }
+            }
+            if(found) {
+                break;
+            }
+        }
+        return results;
+    }
+
+
     void printLowestTwoElementsinArray(int[] nums) {
         int lowest=Integer.MAX_VALUE;
         int low2ndest =Integer.MAX_VALUE-1;
@@ -196,5 +239,6 @@ class MissingNumbersInSequeunce {
         System.out.println("lowest elems are: " + lowest + " "+ low2ndest);
     }
 }
+
 
 

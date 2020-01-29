@@ -154,6 +154,7 @@ class BinarySearchTree {
     boolean search(int data) {
         return search(root, data);
     }
+
     private boolean search(Node current, int data) {
         if (current == null) {
             System.out.println("match not found");
